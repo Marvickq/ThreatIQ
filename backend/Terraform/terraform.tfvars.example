@@ -1,0 +1,20 @@
+# Copy to a gitignored file (for example prod.tfvars) and replace every placeholder with YOUR values.
+# Nothing here is a real resource id.
+
+region             = "REPLACE_REGION"
+vpc_id             = "REPLACE_VPC_ID"
+public_subnet_ids  = ["REPLACE_PUBLIC_SUBNET_A", "REPLACE_PUBLIC_SUBNET_B"]
+private_subnet_ids = ["REPLACE_PRIVATE_SUBNET_A", "REPLACE_PRIVATE_SUBNET_B"]
+
+api_image           = "REPLACE_API_IMAGE_URI_WITH_IMMUTABLE_TAG_OR_DIGEST"
+frontend_image      = "REPLACE_FRONTEND_IMAGE_URI_WITH_IMMUTABLE_TAG_OR_DIGEST"
+acm_certificate_arn = "REPLACE_ACM_CERTIFICATE_ARN"
+public_url          = "https://REPLACE_HOSTNAME"
+
+nebius_model = "REPLACE_NEBIUS_MODEL"
+
+# Optional: ARNs of Secrets Manager secrets you created yourself.
+# nebius_api_key_secret_arn     = "arn:aws:secretsmanager:..."
+# virustotal_api_key_secret_arn = "arn:aws:secretsmanager:..."
+# nvd_api_key_secret_arn        = "arn:aws:secretsmanager:..."
+# nvidia_api_key_secret_arn     = "arn:aws:secretsmanager:..."

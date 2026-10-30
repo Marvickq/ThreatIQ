@@ -16,8 +16,25 @@ dist/
 
 # Allow the committed example files (the .env.* rule above would otherwise hide them)
 !.env.compose.example
-# Terraform
-terraform/.terraform/
+# Terraform (state can contain generated secrets; never commit it)
+**/.terraform/
 *.tfstate
 *.tfstate.*
 *.tfvars
+*.tfvars.json
+!*.tfvars.example
+*.tfplan
+tfplan
+tfplan.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# A downloaded Terraform CLI binary is not project source
+backend/[Tt]erraform/terraform.exe
+backend/[Tt]erraform/LICENSE.txt
+# Keep .terraform.lock.hcl committed (it pins provider versions)

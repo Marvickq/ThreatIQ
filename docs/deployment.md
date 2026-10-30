@@ -44,10 +44,10 @@ docker compose --env-file .env.compose up --build
 Stack: PostgreSQL 16, Redis 7, API, Celery worker, nginx web on `:8080`. With Redis/Celery configured, jobs run in the worker and live events cross processes through Redis pub/sub.
 
 ## AWS with Terraform (written, NOT applied or validated here)
-The `terraform/` module creates ECS Fargate services (api, worker, web), an ALB (HTTPS only; `/api/*` to the API), RDS PostgreSQL (encrypted, Multi-AZ, deletion-protected, 14-day backups), ElastiCache Redis (encrypted, TLS+auth), a private versioned S3 bucket with a least-privilege task role, Secrets Manager entries, CloudWatch logs, and ECS deployment circuit breakers with automatic rollback.
+The `backend/terraform/` module creates ECS Fargate services (api, worker, a single dedicated scheduler, web), an ALB (HTTPS only; `/api/*` to the API), RDS PostgreSQL (encrypted, Multi-AZ, deletion-protected, 14-day backups), ElastiCache Redis (encrypted, TLS+auth), a private versioned S3 bucket with a least-privilege task role, Secrets Manager entries, CloudWatch logs, and ECS deployment circuit breakers with automatic rollback.
 You provide: an existing VPC and subnets, pushed container images, an ACM certificate, and (optionally) Secrets Manager ARNs for the Nebius/NVD/VirusTotal keys.
 ```bash
-cd terraform
+cd backend/terraform
 terraform init
 terraform validate
 terraform plan -var-file=prod.tfvars       # review carefully
