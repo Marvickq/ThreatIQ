@@ -1,0 +1,3 @@
+-r requirements.txt
+# Test-only: extracts text from generated PDFs so report contents can be asserted.
+pypdf==6.21.4

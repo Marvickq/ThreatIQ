@@ -1,0 +1,23 @@
+# Secrets and local data
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite3
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+
+# Allow the committed example files (the .env.* rule above would otherwise hide them)
+!.env.compose.example
+# Terraform
+terraform/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars

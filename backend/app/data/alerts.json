@@ -1,0 +1,113 @@
+[
+  {
+    "id": "ALT-001",
+    "title": "Login from new country after travel notice",
+    "description": "[SYNTHETIC] User m.rivera signed in from Lisbon, PT at 08:12 UTC using the corporate VPN-bypass profile. The account has no prior sign-ins from PT. MFA prompt was approved on the registered phone. HR calendar shows an approved business trip to Lisbon this week.",
+    "severity": "medium",
+    "source": "identity-provider",
+    "affected_entity": "m.rivera",
+    "created_at": "2026-10-26T08:12:00Z",
+    "demo_scenario": "likely_harmless"
+  },
+  {
+    "id": "ALT-002",
+    "title": "Repeated failed logins followed by success from unfamiliar IP",
+    "description": "[SYNTHETIC] 43 failed sign-in attempts for account svc-backup over 6 minutes from 203.0.113.58, followed by a successful sign-in from the same address. The address has no prior history with this account. MFA is not enforced on this service account. Immediately after sign-in, the account was added to the 'Backup Operators' group.",
+    "severity": "critical",
+    "source": "identity-provider",
+    "affected_entity": "svc-backup",
+    "created_at": "2026-10-27T02:41:00Z",
+    "demo_scenario": "suspicious"
+  },
+  {
+    "id": "ALT-003",
+    "title": "Unusual data transfer volume from workstation",
+    "description": "[SYNTHETIC] Workstation WKS-0147 uploaded 2.3 GB to an external cloud-storage domain between 22:05 and 22:40 UTC. Network logs show the transfer, but endpoint telemetry for the same window is missing because the agent was offline. The owner is a contractor whose assignment status is not recorded in the alert.",
+    "severity": "high",
+    "source": "network-monitor",
+    "affected_entity": "WKS-0147",
+    "created_at": "2026-10-27T22:40:00Z",
+    "demo_scenario": "insufficient_evidence"
+  },
+  {
+    "id": "ALT-004",
+    "title": "Password spray pattern against VPN gateway",
+    "description": "[SYNTHETIC] 112 accounts each received 1-2 failed VPN sign-ins from 198.51.100.24 within 20 minutes. No successful sign-ins from this address were observed.",
+    "severity": "high",
+    "source": "vpn-gateway",
+    "affected_entity": "vpn-gw-01",
+    "created_at": "2026-10-25T13:05:00Z"
+  },
+  {
+    "id": "ALT-005",
+    "title": "Scheduled vulnerability scan flagged as port sweep",
+    "description": "[SYNTHETIC] Host 10.20.4.15 probed 1,024 ports across 40 internal servers between 01:00 and 01:20 UTC. The change calendar lists a weekly authenticated vulnerability scan from this scanner at the same time.",
+    "severity": "low",
+    "source": "ids",
+    "affected_entity": "10.20.4.15",
+    "created_at": "2026-10-26T01:20:00Z"
+  },
+  {
+    "id": "ALT-006",
+    "title": "Privilege escalation: user added to Domain Admins",
+    "description": "[SYNTHETIC] Account j.okafor was added to 'Domain Admins' at 16:48 UTC by account helpdesk-tier1. Helpdesk-tier1 does not normally hold rights to modify this group. No change ticket is referenced.",
+    "severity": "critical",
+    "source": "directory-audit",
+    "affected_entity": "j.okafor",
+    "created_at": "2026-10-27T16:48:00Z"
+  },
+  {
+    "id": "ALT-007",
+    "title": "Impossible travel between two sign-ins",
+    "description": "[SYNTHETIC] Account t.nguyen signed in from Singapore at 09:02 UTC and from Frankfurt at 09:40 UTC. The Frankfurt sign-in used a commercial VPN exit node. Both sign-ins passed MFA.",
+    "severity": "medium",
+    "source": "identity-provider",
+    "affected_entity": "t.nguyen",
+    "created_at": "2026-10-24T09:40:00Z"
+  },
+  {
+    "id": "ALT-008",
+    "title": "Malware signature match on email attachment",
+    "description": "[SYNTHETIC] Mail gateway quarantined invoice_4471.xlsm sent to a.patel. Attachment matched a generic macro-downloader signature. The message was quarantined before delivery. No endpoint execution events were recorded.",
+    "severity": "medium",
+    "source": "mail-gateway",
+    "affected_entity": "a.patel",
+    "created_at": "2026-10-26T11:15:00Z"
+  },
+  {
+    "id": "ALT-009",
+    "title": "Service account interactive login",
+    "description": "[SYNTHETIC] Account svc-reporting, normally used only for scheduled jobs, started an interactive RDP session on APP-DB-02 at 03:30 UTC. A database maintenance window is listed for APP-DB-02 that night, but the owner of the session is not recorded.",
+    "severity": "high",
+    "source": "endpoint-agent",
+    "affected_entity": "svc-reporting",
+    "created_at": "2026-10-28T03:30:00Z"
+  },
+  {
+    "id": "ALT-010",
+    "title": "New admin API key created",
+    "description": "[SYNTHETIC] An administrator API key was created for the billing application by s.kim at 14:22 UTC from the corporate network. The key was created through the standard admin console and a matching change request CHG-2291 is approved.",
+    "severity": "low",
+    "source": "cloud-audit",
+    "affected_entity": "billing-app",
+    "created_at": "2026-10-27T14:22:00Z"
+  },
+  {
+    "id": "ALT-011",
+    "title": "Large number of file deletions on shared drive",
+    "description": "[SYNTHETIC] 1,860 files were deleted from the Finance shared drive by user d.hassan within 4 minutes. Cloud backup shows the files remain recoverable. The deletion followed a folder-restructuring request noted in a chat message that is not attached to the alert.",
+    "severity": "high",
+    "source": "file-audit",
+    "affected_entity": "d.hassan",
+    "created_at": "2026-10-28T10:05:00Z"
+  },
+  {
+    "id": "ALT-012",
+    "title": "DNS queries to newly registered domain",
+    "description": "[SYNTHETIC] Host WKS-0310 made 14 DNS queries to a domain registered 3 days ago, at regular 5-minute intervals. The domain has no web reputation data available.",
+    "severity": "medium",
+    "source": "dns-monitor",
+    "affected_entity": "WKS-0310",
+    "created_at": "2026-10-28T07:50:00Z"
+  }
+]

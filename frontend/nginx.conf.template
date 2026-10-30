@@ -1,0 +1,32 @@
+server {
+  listen 80;
+  server_name _;
+  root /usr/share/nginx/html;
+  index index.html;
+
+  # The SPA is static; the API sets its own (stricter) headers. This CSP allows only what the app uses.
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "DENY" always;
+  add_header Referrer-Policy "no-referrer" always;
+  add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" always;
+
+  location = /healthz { access_log off; return 200 "ok\n"; add_header Content-Type text/plain; }
+
+  # Hashed build assets are immutable.
+  location /assets/ { expires 1y; add_header Cache-Control "public, immutable"; try_files $uri =404; }
+
+  # API and live events. Buffering is off so Server-Sent Events are delivered immediately.
+  location /api/ {
+    proxy_pass ${BACKEND_URL};
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_buffering off;
+    proxy_read_timeout 3600s;
+    client_max_body_size 6m;
+  }
+
+  location / { try_files $uri /index.html; add_header Cache-Control "no-cache"; }
+}

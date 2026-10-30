@@ -1,0 +1,26 @@
+{
+  "title": "ThreatIQ overview",
+  "uid": "threatiq-overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-6h", "to": "now" },
+  "panels": [
+    { "id": 1, "type": "timeseries", "title": "Requests / s by status", "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [{ "expr": "sum by (status) (rate(threatiq_http_requests_total[5m]))", "legendFormat": "{{status}}" }] },
+    { "id": 2, "type": "timeseries", "title": "p95 request latency (s)", "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [{ "expr": "histogram_quantile(0.95, sum by (le) (rate(threatiq_http_request_duration_seconds_bucket[5m])))" }] },
+    { "id": 3, "type": "timeseries", "title": "AI inference outcomes / min", "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [{ "expr": "sum by (outcome) (rate(threatiq_ai_inference_total[5m])) * 60", "legendFormat": "{{outcome}}" }] },
+    { "id": 4, "type": "timeseries", "title": "p95 AI inference latency (s)", "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [{ "expr": "histogram_quantile(0.95, sum by (le) (rate(threatiq_ai_inference_duration_seconds_bucket[15m])))" }] },
+    { "id": 5, "type": "timeseries", "title": "Job queue depth", "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+      "targets": [{ "expr": "threatiq_job_queue_depth", "legendFormat": "{{status}}" }] },
+    { "id": 6, "type": "timeseries", "title": "Provider calls by outcome / min", "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+      "targets": [{ "expr": "sum by (provider, outcome) (rate(threatiq_provider_requests_total[5m])) * 60", "legendFormat": "{{provider}} {{outcome}}" }] },
+    { "id": 7, "type": "timeseries", "title": "Alerts ingested / min by outcome", "gridPos": { "h": 8, "w": 12, "x": 0, "y": 24 },
+      "targets": [{ "expr": "sum by (outcome) (rate(threatiq_alerts_ingested_total[5m])) * 60", "legendFormat": "{{outcome}}" }] },
+    { "id": 8, "type": "timeseries", "title": "Jobs finished / min by kind and status", "gridPos": { "h": 8, "w": 12, "x": 12, "y": 24 },
+      "targets": [{ "expr": "sum by (kind, status) (rate(threatiq_jobs_total[5m])) * 60", "legendFormat": "{{kind}} {{status}}" }] }
+  ]
+}

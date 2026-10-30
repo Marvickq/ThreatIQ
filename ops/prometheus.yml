@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: threatiq-api
+    metrics_path: /api/v1/metrics
+    # If METRICS_TOKEN is set on the API, uncomment and set the same token:
+    # authorization:
+    #   type: Bearer
+    #   credentials: REPLACE_WITH_METRICS_TOKEN
+    static_configs:
+      - targets: ["backend:8000"]
+
+# Suggested alerts (add to a rules file when running Alertmanager):
+#   - sum(rate(threatiq_http_requests_total{status=~"5.."}[5m])) / sum(rate(threatiq_http_requests_total[5m])) > 0.05
+#   - threatiq_job_queue_depth{status="queued"} > 50
+#   - increase(threatiq_provider_requests_total{outcome="error"}[15m]) > 10
+#   - histogram_quantile(0.95, rate(threatiq_ai_inference_duration_seconds_bucket[15m])) > 120

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "INC-001",
+    "description": "[SYNTHETIC] Employee sign-in from a foreign country during approved travel; MFA approved on the registered device.",
+    "outcome": "false_positive",
+    "details": "Confirmed against the HR travel calendar. No further activity. Closed after the travel dates ended.",
+    "keywords": ["login", "new country", "travel", "mfa", "sign-in"]
+  },
+  {
+    "id": "INC-002",
+    "description": "[SYNTHETIC] Many failed logins on a service account followed by a successful login from an external IP and a group membership change.",
+    "outcome": "true_positive",
+    "details": "Credential guessing against a service account without MFA. The account was added to a privileged group and later used to read backup data. Credentials reset and account restricted.",
+    "keywords": ["failed logins", "service account", "successful login", "group", "unfamiliar ip", "backup"]
+  },
+  {
+    "id": "INC-003",
+    "description": "[SYNTHETIC] Weekly authenticated vulnerability scanner triggered a port-sweep alert.",
+    "outcome": "false_positive",
+    "details": "Source matched the approved scanner and change calendar entry. Scanner address added to the IDS tuning list.",
+    "keywords": ["port sweep", "scan", "scanner", "ids", "ports"]
+  },
+  {
+    "id": "INC-004",
+    "description": "[SYNTHETIC] Large upload to external cloud storage from a contractor workstation.",
+    "outcome": "inconclusive",
+    "details": "Endpoint logs were unavailable and the contractor had left the project. Closed as inconclusive; policy for contractor offboarding was updated.",
+    "keywords": ["upload", "data transfer", "cloud storage", "contractor", "workstation", "exfiltration"]
+  },
+  {
+    "id": "INC-005",
+    "description": "[SYNTHETIC] Impossible-travel alert caused by a commercial VPN exit node.",
+    "outcome": "false_positive",
+    "details": "Both sign-ins were the same user and device fingerprint. VPN usage was confirmed by the user.",
+    "keywords": ["impossible travel", "vpn", "sign-in", "mfa"]
+  },
+  {
+    "id": "INC-006",
+    "description": "[SYNTHETIC] Password spray against the VPN gateway from a single external address.",
+    "outcome": "true_positive",
+    "details": "Attacker address blocked at the firewall by the network team after review. No successful sign-ins were found. Two accounts later received forced password resets as a precaution.",
+    "keywords": ["password spray", "vpn", "failed logins", "many accounts"]
+  }
+]
