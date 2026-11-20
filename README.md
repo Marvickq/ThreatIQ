@@ -19,7 +19,7 @@ It helps security teams move from fragmented alert handling to structured, evide
 - **Deployment:** [`docs/deployment.md`](docs/deployment.md)
 - **Documentation:** [`docs/`](docs/)
 
-The repository is publicly accessible for judging, source-code review, and testing.
+
 
 ---
 
