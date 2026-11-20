@@ -155,7 +155,7 @@ NVIDIA model references in the project include:
 - **NVIDIA Nemotron**
 - **NVIDIA `nv-embed-v1`**
 
-Their exact model identifiers and implemented roles should be documented against the actual application configuration and code. Only claim a model as integrated if the submitted implementation invokes it.
+
 
 ### Where Token Factory Accelerates the Workflow
 
@@ -169,7 +169,7 @@ Token Factory provides hosted inference within the investigation pipeline:
 
 This lets the project focus on evidence handling, investigation orchestration, validation, and analyst workflows rather than managing model-serving infrastructure.
 
-**Human oversight remains mandatory.** AI-generated findings are advisory, not verified conclusions or automated response actions.
+**Human oversight remains mandatory.** AI-generated findings are advisory.
 
 ---
 
@@ -186,7 +186,7 @@ This lets the project focus on evidence handling, investigation orchestration, v
 | AWS S3 | Object storage |
 | Microsoft Entra ID | SSO support |
 
-External integrations require their respective credentials and configuration.
+
 
 ---
 
@@ -210,7 +210,7 @@ cd ThreatIQ
 
 ### 2. Configure environment variables
 
-Use the example environment files provided in the repository, where available.
+
 
 Configure the required values for:
 
@@ -222,15 +222,13 @@ Configure the required values for:
 - AWS S3
 - Optional SIEM and monitoring integrations
 
-Never commit real credentials or production secrets.
+
 
 ### 3. Start the application
 
 Follow the backend and frontend installation instructions and startup commands documented in the relevant project directories.
 
 For complete, current commands and environment configuration, refer to the repository's setup documentation and deployment guide.
-
-> **Note:** Do not assume that example credentials or placeholder values will connect to external services. Supply valid credentials for the integrations you intend to run.
 
 ---
 
@@ -284,9 +282,6 @@ The current CI workflow includes:
 - Frontend build verification.
 - Packaging checks.
 
-The current V2 implementation does not maintain an automated application test suite. Legacy V1 tests are retained separately under `backend/tests_legacy/` and are not compatible with V2.
-
-Deployment and integration verification should not be confused with automated test coverage.
 
 ---
 
@@ -307,7 +302,7 @@ Documented deployment components include:
 
 **Deployment guide:** [`docs/deployment.md`](docs/deployment.md)
 
-Infrastructure configuration does not, by itself, mean that every resource has been provisioned. Deployment must be completed and verified in the target environment.
+
 
 ---
 
@@ -355,7 +350,6 @@ Potential areas for further development:
 - Improved operational performance measurement.
 - Additional language support.
 
-These are future considerations, not claims of existing functionality.
 
 ---
 
